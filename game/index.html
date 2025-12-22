@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Neon Snake</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app" aria-label="Neon Snake game">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand__dot" aria-hidden="true"></div>
+          <div class="brand__name">Neon Snake</div>
+        </div>
+
+        <div class="hud" role="status" aria-live="polite">
+          <div class="hud__item">
+            <div class="hud__label">Score</div>
+            <div class="hud__value" id="scoreValue">0</div>
+          </div>
+          <div class="hud__item">
+            <div class="hud__label">Best</div>
+            <div class="hud__value" id="bestValue">0</div>
+          </div>
+          <div class="hud__item">
+            <div class="hud__label">Speed</div>
+            <div class="hud__value" id="speedValue">1.0×</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn--ghost" id="pauseBtn" type="button" title="Pause (P)">
+            Pause
+          </button>
+          <button class="btn" id="restartBtn" type="button" title="Restart (R)">Restart</button>
+        </div>
+      </header>
+
+      <section class="stage" aria-label="Game board">
+        <canvas id="gameCanvas" width="600" height="600" aria-label="Snake board"></canvas>
+
+        <div class="overlay" id="overlay" aria-hidden="false">
+          <div class="panel" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+            <div class="panel__title" id="overlayTitle">Neon Snake</div>
+            <div class="panel__subtitle" id="overlaySubtitle">
+              Eat the glowing food. Don’t hit the walls or yourself.
+            </div>
+
+            <div class="panel__grid">
+              <div class="panel__box">
+                <div class="panel__boxTitle">Controls</div>
+                <ul class="panel__list">
+                  <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or Arrow keys</li>
+                  <li><kbd>P</kbd> pause / resume</li>
+                  <li><kbd>R</kbd> restart</li>
+                  <li>Touch: swipe to turn</li>
+                </ul>
+              </div>
+
+              <div class="panel__box">
+                <div class="panel__boxTitle">Difficulty</div>
+                <div class="radioRow" role="radiogroup" aria-label="Difficulty">
+                  <label class="radio">
+                    <input type="radio" name="difficulty" value="chill" checked />
+                    <span>Chill</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="difficulty" value="standard" />
+                    <span>Standard</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="difficulty" value="spicy" />
+                    <span>Spicy</span>
+                  </label>
+                </div>
+                <div class="hint">Speed increases as you score.</div>
+              </div>
+            </div>
+
+            <div class="panel__actions">
+              <button class="btn btn--primary" id="startBtn" type="button">Start</button>
+              <button class="btn btn--ghost" id="howBtn" type="button">How it works</button>
+            </div>
+
+            <div class="panel__footer" id="footerText">
+              Tip: Try to “orbit” food rather than chase it straight on.
+            </div>
+          </div>
+        </div>
+
+        <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+      </section>
+
+      <footer class="footer">
+        <span>Made for this repo — open in a browser to play.</span>
+      </footer>
+    </main>
+
+    <script src="./game.js" defer></script>
+  </body>
+</html>
