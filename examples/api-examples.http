@@ -1,0 +1,56 @@
+### Payment Processing API Examples
+### Use with REST Client extension in VS Code or similar tools
+
+@baseUrl = http://localhost:3000
+@paymentIntentId = pi_xxx
+
+### Health Check
+GET {{baseUrl}}/health
+
+### Create Payment Intent
+POST {{baseUrl}}/api/payments/intent
+Content-Type: application/json
+
+{
+  "amount": 100.00,
+  "currency": "USD",
+  "description": "Payment for order #123",
+  "metadata": {
+    "orderId": "123",
+    "userId": "456"
+  }
+}
+
+### Get Payment Intent
+GET {{baseUrl}}/api/payments/intent/{{paymentIntentId}}
+
+### Confirm Payment
+POST {{baseUrl}}/api/payments/confirm
+Content-Type: application/json
+
+{
+  "paymentIntentId": "{{paymentIntentId}}"
+}
+
+### Create Full Refund
+POST {{baseUrl}}/api/payments/refund
+Content-Type: application/json
+
+{
+  "paymentIntentId": "{{paymentIntentId}}"
+}
+
+### Create Partial Refund
+POST {{baseUrl}}/api/payments/refund
+Content-Type: application/json
+
+{
+  "paymentIntentId": "{{paymentIntentId}}",
+  "amount": 50.00
+}
+
+### List Payment Intents
+GET {{baseUrl}}/api/payments/intents?limit=10
+
+### List Payment Intents with Pagination
+GET {{baseUrl}}/api/payments/intents?limit=10&starting_after=pi_xxx
